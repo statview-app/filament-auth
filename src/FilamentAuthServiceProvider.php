@@ -3,6 +3,8 @@
 namespace Statview\FilamentAuth;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Http\Middleware\CheckForAnyScope;
+use Laravel\Passport\Http\Middleware\CheckScopes;
 use Laravel\Passport\Passport;
 use Livewire\Livewire;
 use Statview\FilamentAuth\Console\InstallAuthorizeView;
@@ -22,6 +24,9 @@ class FilamentAuthServiceProvider extends ServiceProvider
         $this->commands([
             InstallAuthorizeView::class,
         ]);
+
+        app('router')->aliasMiddleware('scopes', CheckScopes::class);
+        app('router')->aliasMiddleware('scope', CheckForAnyScope::class);
     }
 
     public function boot()

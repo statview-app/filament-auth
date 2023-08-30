@@ -30,13 +30,17 @@ class Login extends SimplePage
 
     public function mount(): void
     {
+        $panel = Filament::getDefaultPanel();
+
+        Filament::setCurrentPanel($panel);
+
+        Filament::bootCurrentPanel();
+
         $this->form->fill();
     }
 
     public function authenticate()
     {
-        ray()->confetti();
-
         try {
             $this->rateLimit(5);
         } catch (TooManyRequestsException $exception) {

@@ -5,7 +5,7 @@ use Statview\FilamentAuth\Filament\Pages\Login;
 use Statview\FilamentAuth\Http\Controllers\RevokeOAuthController;
 use Statview\FilamentAuth\Http\Controllers\UserOAuthController;
 
-Route::get('filament-auth/login', Login::class)->name('login')->middleware('web');
+Route::get('filament-auth/login', Login::class)->name('login')->middleware(['web']);
 
 Route::group([
     'as' => 'filament-auth.sso.',
