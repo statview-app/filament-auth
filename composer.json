@@ -1,0 +1,25 @@
+{
+    "name": "statview/filament-auth",
+    "authors": [
+        {
+            "name": "Sebastiaan Kloos",
+            "email": "sebastiaan@statview.app"
+        }
+    ],
+    "require": {
+        "laravel/passport": "^11.9",
+        "illuminate/support": "^v10.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Statview\\FilamentAuth\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Statview\\FilamentAuth\\FilamentAuthServiceProvider"
+            ]
+        }
+    }
+}
