@@ -7,6 +7,8 @@ use Statview\FilamentAuth\Http\Controllers\UserOAuthController;
 
 Route::get('filament-auth/login', Login::class)->name('login')->middleware(['web']);
 
+ray(config('auth'));
+
 Route::group([
     'as' => 'filament-auth.sso.',
     'prefix' => 'filament-auth/sso',
@@ -40,7 +42,7 @@ Route::group([
         });
 });
 
-Route::middleware('api')->group(function () {
+Route::middleware(['api', 'auth:filament'])->group(function () {
     Route::get('filament-auth/sso/user', UserOAuthController::class)->middleware('scopes:email');
 
     Route::delete('filament-auth/sso/revoke', RevokeOAuthController::class);

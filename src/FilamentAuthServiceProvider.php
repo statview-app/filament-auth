@@ -2,6 +2,7 @@
 
 namespace Statview\FilamentAuth;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Http\Middleware\CheckForAnyScope;
 use Laravel\Passport\Http\Middleware\CheckScopes;
@@ -18,6 +19,11 @@ class FilamentAuthServiceProvider extends ServiceProvider
         Passport::ignoreRoutes();
         Passport::ignoreMigrations();
         Passport::useClientModel(Client::class);
+
+        Config::set('auth.guards.filament', [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ]);
 
         $this->loadRoutesFrom(__DIR__.'/../routes/filament-auth.php');
 
